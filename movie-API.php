@@ -26,7 +26,7 @@ if ($requestMethod == "GET") {
     if (isset ($_GET["id"])) {
         $id = $_GET["id"];
 
-        foreach ($movies as $movies) {
+        foreach ($movies as $movie) {
             if ($movie["id"] == $id) {
                 sendJSON($movie);
             }
@@ -35,6 +35,44 @@ if ($requestMethod == "GET") {
         $error = ["ERROR" => "Movie not found"];
         sendJSON($error, 404);
     }
+
+    if (isset($_GET["language"])) {
+        $language = $_GET["language"];
+        $filteredMovies = [];
+
+        foreach ($movies as $movie) {
+            if ($movie["language"] == $language) {
+                $filteredMovies[] = $movie; 
+            }
+        }
+        
+        if(!empty($filteredMovies)) {
+            sendJSON($filteredMovies);
+        }
+
+        $error = ["ERROR" => "Movie not found"];
+        sendJSON($error, 404);
+    }
+
+    if (isset($_GET["releaseYear"])) {
+        $releaseYear = $_GET["releaseYear"];
+        $filteredMovies = [];
+        
+        foreach ($movies as $movie) {
+            if ($movie["releaseYear"] <= $releaseYear) { 
+                //releaseYear och under
+                $filteredMovies[] = $movie; 
+            }
+        }
+        
+        if(!empty($filteredMovies)) {
+            sendJSON($filteredMovies);
+        }
+
+        $error = ["ERROR" => "Movie not found"];
+        sendJSON($error, 404);
+    }
+
     sendJSON($movies);
 }
 
@@ -87,6 +125,7 @@ if ($requestMethod == "POST") {
     sendJSON($addedMovie); 
 }
 
+//DELETE METHOD
 if ($requestMethod == "DELETE") {
     if (!isset($inputData["id"])) {
         $error = ["ERROR" => "Bad Request: Movie ID required."];
@@ -107,6 +146,28 @@ if ($requestMethod == "DELETE") {
     sendJSON($error, 404);
 }
 
+//PATCH METHOD
+if ($requestMethod == "PATCH") {
+    if (!isset($inputData["id"], $inputData["key"])) {
+        $error = ["ERROR" => "Bad Request: ID or Key is missing"];
+        sendJSON($error, 400);
+    }
 
+    $id = $inputData["id"];
+    $editedKey = $inputData["key"];
 
+    foreach ($movies as $index => $movie) {
+        if ($movie["id"] == $id) {
+            $movie["key"] = $editedKey;
+            $movies[$index] = $movie; 
+
+            $movies_json = json_encode($movies, JSON_PRETTY_PRINT);
+            file_put_contents($filename, $movies_json);
+            sendJSON($movie);
+        }
+    }
+
+    $error = ["ERROR" => "Movie not found."];
+    sendJSON($error, 404);
+}
 ?>
