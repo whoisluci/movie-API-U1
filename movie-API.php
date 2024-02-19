@@ -10,7 +10,7 @@ $allowedMethods = ["GET", "POST", "PATCH", "DELETE"];
 
 
 if (!in_array($requestMethod, $allowedMethods)){
-    $error = ["error" => "Invalid HTTP method"];
+    $error = ["error" => "Invalid HTTP method."];
     sendJSON($error, 405);
 }
 
@@ -21,6 +21,7 @@ if (file_exists($filename)) { //hämtar data
     $movies = json_decode($movies_json, true);
 }
 
+//GET METHOD
 if ($requestMethod == "GET") {
     if (isset ($_GET["id"])) {
         $id = $_GET["id"];
@@ -37,10 +38,10 @@ if ($requestMethod == "GET") {
     sendJSON($movies);
 }
 
-
+//POST METHOD
 $contentType = $_SERVER["CONTENT_TYPE"];
 if ($contentType != "application/json") {
-    $error = ["ERROR" => "Invalid content type, only JSON is allowed"];
+    $error = ["ERROR" => "Invalid content type, only JSON is allowed."];
     sendJSON ($error, 400);
 }
 
@@ -85,6 +86,27 @@ if ($requestMethod == "POST") {
     file_put_contents($filename, $movies_json);
     sendJSON($addedMovie); 
 }
+
+if ($requestMethod == "DELETE") {
+    if (!isset($inputData["id"])) {
+        $error = ["ERROR" => "Bad Request: Movie ID required."];
+        sendJSON($error, 400);
+    }
+
+    $id = $inputData["id"];
+    foreach ($movies as $index => $movie) {
+        if ($movie["id"] == $id) {
+            array_splice($movies, $index, 1);
+            $movies_json = json_encode($movies, JSON_PRETTY_PRINT);
+            file_put_contents($filename, $movies_json);
+            sendJSON($movie);
+        }
+    }
+
+    $error = ["ERROR" => "Movie not found."];
+    sendJSON($error, 404);
+}
+
 
 
 ?>
