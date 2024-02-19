@@ -8,14 +8,6 @@ $filename = "movies.json";
 $requestMethod = $_SERVER["REQUEST_METHOD"];
 $allowedMethods = ["GET", "POST", "PATCH", "DELETE"];
 
-$contentType = $_SERVER["CONTENT_TYPE"];
-if ($contentType != "application/json") {
-    $error = ["ERROR" => "Invalid content type, only JSON is allowed"];
-    sendJSON ($error, 400);
-}
-
-$inputJSON = file_get_contents("php://input");
-$inputData = json_decode($inputJSON, true);
 
 if (!in_array($requestMethod, $allowedMethods)){
     $error = ["error" => "Invalid HTTP method"];
@@ -26,7 +18,7 @@ $movies = []; //startar m. tom data
 
 if (file_exists($filename)) { //hämtar data 
     $movies_json = file_get_contents($filename);
-    $movies = json_decode($json, true);
+    $movies = json_decode($movies_json, true);
 }
 
 if ($requestMethod == "GET") {
@@ -45,6 +37,15 @@ if ($requestMethod == "GET") {
     sendJSON($movies);
 }
 
+
+$contentType = $_SERVER["CONTENT_TYPE"];
+if ($contentType != "application/json") {
+    $error = ["ERROR" => "Invalid content type, only JSON is allowed"];
+    sendJSON ($error, 400);
+}
+
+$inputJSON = file_get_contents("php://input");
+$inputData = json_decode($inputJSON, true);
 
 if ($requestMethod == "POST") {
     //$requiredKeys = ["key1", "key2", "key3", "key4", "key5"];
