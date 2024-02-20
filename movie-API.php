@@ -41,8 +41,8 @@ if ($requestMethod == "GET") {
         $filteredMovies = [];
 
         foreach ($movies as $movie) {
-            if ($movie["language"] == $language) {
-                $filteredMovies[] = $movie; 
+            if (in_array($language, $movie["language"])) {
+                $filteredMovies[] = $movie;
             }
         }
         
@@ -73,6 +73,26 @@ if ($requestMethod == "GET") {
         sendJSON($error, 404);
     }
 
+    if (isset($_GET["avgRating"])) {
+        $avgRating = $_GET["avgRating"];
+        $filteredMovies = [];
+        
+        foreach ($movies as $movie) {
+            if ($movie["avgRating"] >= $avgRating) { 
+                //avgRating och under
+                $filteredMovies[] = $movie; 
+            }
+        }
+        
+        if(!empty($filteredMovies)) {
+            sendJSON($filteredMovies);
+        }
+
+        $error = ["ERROR" => "Movie not found"];
+        sendJSON($error, 404);
+    }
+
+
     sendJSON($movies);
 }
 
@@ -87,38 +107,37 @@ $inputJSON = file_get_contents("php://input");
 $inputData = json_decode($inputJSON, true);
 
 if ($requestMethod == "POST") {
-    //$requiredKeys = ["key1", "key2", "key3", "key4", "key5"];
-    //$allRequiredKeys = true;
+    $requiredKeys = ["title", "releaseYear", "director", "language", "runtime", "avgRating"];
+    $allRequiredKeys = true;
 
-    //foreach ($requiredKeys as $key) {
-        //if (!isset ($inputData[$key])) {
-            //$allRequiredKeys = false; 
-            //break;
-        //}
-    //}
+    foreach ($requiredKeys as $key) {
+        if (!isset ($inputData[$key])){
+            $allRequiredKeys = false; 
+            break;
+        }
+    }
 
-    //if ($allRequiredKeys){}
-
-    if (!isset($inputData["key1"], $inputData["key2"], $inputData["key3"], $inputData["key4"], $inputData["key5"])) {
+    if (!$allRequiredKeys){
         $error = ["ERROR" => "Bad Request: One or more keys are missing."];
         sendJSON($error, 400);
     }
 
-    $key1 = $inputData["key1"];
-    $key2 = $inputData["key2"];
-    $key3 = $inputData["key3"];
-    $key4 = $inputData["key4"];
-    $key5 = $inputData["key5"];
-
+   
     $highestID = 0;
     foreach ($movies as $movie) {
         if ($movie["id"] > $highestID) {
-            $highestId = $movie["id"];
+            $highestID = $movie["id"];
         }
     }
     $nextID = $highestID + 1;
 
-    $addedMovie = ["id" => $nextId, "key1" => $key1, "key2" => $key2, "key3" => $key3, "key4" => $key4, "key5" => $key5];
+    $addedMovie = [];
+    $addedMovie["id"] = $nextID;
+    foreach ($requiredKeys as $key) {
+            $$key = $inputData[$key];
+            $addedMovie[$key] = $$key;
+        }
+
     $movies[] = $addedMovie;
     $movies_json = json_encode($movies, JSON_PRETTY_PRINT);
     file_put_contents($filename, $movies_json);
