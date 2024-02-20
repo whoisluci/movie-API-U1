@@ -1,212 +1,200 @@
-
 [
     {
         "id": 1,
         "title": "Perfect Blue",
-        "realeaseYear": 1997,
+        "releaseYear": 1997,
         "director": "Satoshi Kon",
-        "language": "Japanese",
+        "language": ["Japanese"],
         "runtime": 81,
         "avgRating": 4.4
     },
-
     {
         "id": 2,
         "title": "Her",
-        "realeaseYear": 2013,
+        "releaseYear": 2013,
         "director": "Spike Jonze",
-        "language": "English",
+        "language": ["English"],
         "runtime": 126,
         "avgRating": 4.0
     },
-
     {
         "id": 3,
         "title": "Guillermo Del Toro's Pinocchio",
-        "realeaseYear": 2022,
+        "releaseYear": 2022,
         "director": "Guillermo Del Toro",
-        "language": "English",
+        "language": ["English"],
         "runtime": 117,
-        "avgRating": 4.0
+        "avgRating": 4
     },
-
     {
         "id": 4,
         "title": "Past Lives",
-        "realeaseYear": 2023,
+        "releaseYear": 2023,
         "director": "Celine Song",
-        "language": "English/Korean",
+        "language": ["English", "Korean"],
         "runtime": 106,
         "avgRating": 4.2
     },
-
     {
         "id": 5,
         "title": "10 Things I Hate About You",
-        "realeaseYear": 1999,
+        "releaseYear": 1999,
         "director": "Gil Junger",
-        "language": "English",
+        "language": ["English"],
         "runtime": 97,
-        "avgRating": 4.0
+        "avgRating": 4
     },
-
     {
         "id": 6,
         "title": "Oppenheimer",
-        "realeaseYear": 2023,
+        "releaseYear": 2023,
         "director": "Christopher Nolan",
-        "language": "English",
+        "language": ["English"],
         "runtime": 181,
         "avgRating": 4.3
     },
-
     {
         "id": 7,
         "title": "Life Is Beautiful",
-        "realeaseYear": 1997,
+        "releaseYear": 1997,
         "director": "Roberto Benigni",
-        "language": "Italian",
+        "language": ["Italian"],
         "runtime": 116,
         "avgRating": 4.3
     },
-
     {
         "id": 8,
         "title": "Reservoir Dogs",
-        "realeaseYear": 1992,
-        "producer": "Quentin Tarantino",
-        "language": "English",
+        "releaseYear": 1992,
+        "director": "Quentin Tarantino",
+        "language": ["English"],
         "runtime": 99,
         "avgRating": 4.2
     },
-
     {
         "id": 9,
         "title": "The Grand Budapest Hotel",
-        "realeaseYear": 2014,
-        "producer": "Wes Anderson",
-        "language": "English",
+        "releaseYear": 2014,
+        "director": "Wes Anderson",
+        "language": ["English"],
         "runtime": 100,
         "avgRating": 4.2
     },
-
     {
         "id": 10,
         "title": "Memento",
-        "realeaseYear": 2000,
-        "producer": "Christopher Nolan",
-        "language": "English",
+        "releaseYear": 2000,
+        "director": "Christopher Nolan",
+        "language": ["English"],
         "runtime": 113,
         "avgRating": 4.2
     },
-
     {
         "id": 11,
         "title": "Scott Pilgrim vs. the World",
-        "realeaseYear": 2010,
-        "producer": "Edgar Wright",
-        "language": "English",
+        "releaseYear": 2010,
+        "director": "Edgar Wright",
+        "language": ["English"],
         "runtime": 113,
         "avgRating": 3.9
     },
-
     {
         "id": 12,
         "title": "Turning Red",
-        "realeaseYear": 2022,
-        "producer": "Domee Shi",
-        "language": "English/Chinese",
+        "releaseYear": 2022,
+        "director": "Domee Shi",
+        "language": ["English", "Chinese"],
         "runtime": 100,
         "avgRating": 3.5
     },
-
     {
         "id": 13,
         "title": "Pearl",
-        "realeaseYear": 2022,
-        "producer": "Ti West",
-        "language": "English",
+        "releaseYear": 2022,
+        "director": "Ti West",
+        "language": ["English"],
         "runtime": 102,
         "avgRating": 3.8
     },
-
     {
         "id": 14,
         "title": "Cure",
-        "realeaseYear": 1997,
-        "producer": "Kiyoshi Kurosawa",
-        "language": "English",
+        "releaseYear": 1997,
+        "director": "Kiyoshi Kurosawa",
+        "language": ["English"],
         "runtime": 111,
         "avgRating": 4.2
     },
-
     {
         "id": 15,
         "title": "Nope",
-        "realeaseYear": 2022,
-        "producer": "Jordan Peele",
-        "language": "English",
+        "releaseYear": 2022,
+        "director": "Jordan Peele",
+        "language": ["English"],
         "runtime": 130,
         "avgRating": 3.7
     },
-
     {
         "id": 16,
         "title": "The Batman",
-        "realeaseYear": 2022,
-        "producer": "Matt Reeves",
-        "language": "English",
+        "releaseYear": 2022,
+        "director": "Matt Reeves",
+        "language": ["English"],
         "runtime": 177,
-        "avgRating": 4.0
+        "avgRating": 4
     },
-
     {
         "id": 17,
         "title": "The Godfather",
-        "realeaseYear": 1972,
-        "producer": "Francis Ford Coppola",
-        "language": "English/Italian",
+        "releaseYear": 1972,
+        "director": "Francis Ford Coppola",
+        "language": ["English", "Italian"],
         "runtime": 175,
         "avgRating": 4.6
     },
-
     {
         "id": 18,
         "title": "Parasite",
-        "realeaseYear": 2019,
-        "producer": "Bong Joon-ho",
-        "language": "Korean",
+        "releaseYear": 2019,
+        "director": "Bong Joon-ho",
+        "language": ["Korean"],
         "runtime": 133,
         "avgRating": 4.6
     },
-
     {
         "id": 19,
         "title": "La Noire de...",
-        "realeaseYear": 1966,
-        "producer": "Ousmane Sembène",
-        "language": "French",
+        "releaseYear": 1966,
+        "director": "Ousmane Semb\u00e8ne",
+        "language": ["French"],
         "runtime": 60,
-        "avgRating": 4.0
+        "avgRating": 4
     },
-
     {
         "id": 20,
         "title": "Cidade de Deus",
-        "realeaseYear": 2002,
-        "producer": "Fernando Meirelles",
-        "language": "Portuguese",
+        "releaseYear": 2002,
+        "director": "Fernando Meirelles",
+        "language": ["Portuguese"],
         "runtime": 130,
         "avgRating": 4.5
     },
-
     {
         "id": 21,
         "title": "American Psycho",
-        "realeaseYear": 2000,
-        "producer": "Mary Harron",
-        "language": "English",
+        "releaseYear": 2000,
+        "director": "Mary Harron",
+        "language": ["English"],
         "runtime": 102,
         "avgRating": 3.9
-    }
+    },
+    {
+        "id": 22,
+        "title": "Interstellar",
+        "releaseYear": 2014,
+        "director": "Christopher Nolan",
+        "language": ["English"],
+        "runtime": 169,
+        "avgRating": 4.3
+      }
 ]
