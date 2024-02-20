@@ -203,17 +203,17 @@ if ($requestMethod == "DELETE") {
 
 //PATCH METHOD
 if ($requestMethod == "PATCH") {
-    if (!isset($inputData["id"], $inputData["key"])) {
+    if (!isset($inputData["id"], $inputData["avgRating"])) {
         $error = ["ERROR" => "Bad Request: ID or Key is missing"];
         sendJSON($error, 400);
     }
 
     $id = $inputData["id"];
-    $editedKey = $inputData["key"];
+    $editedKey = $inputData["avgRating"];
 
     foreach ($movies as $index => $movie) {
         if ($movie["id"] == $id) {
-            $movie["key"] = $editedKey;
+            $movie["avgRating"] = $editedKey;
             $movies[$index] = $movie; 
 
             $movies_json = json_encode($movies, JSON_PRETTY_PRINT);
