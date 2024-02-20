@@ -36,6 +36,43 @@ if ($requestMethod == "GET") {
         sendJSON($error, 404);
     }
 
+    if (isset($_GET["releaseYear"])) {
+        $releaseYear = $_GET["releaseYear"];
+        $filteredMovies = [];
+        
+        foreach ($movies as $movie) {
+            if ($movie["releaseYear"] <= $releaseYear) { 
+                //releaseYear och under
+                $filteredMovies[] = $movie; 
+            }
+        }
+        
+        if(!empty($filteredMovies)) {
+            sendJSON($filteredMovies);
+        }
+
+        $error = ["ERROR" => "Movie not found"];
+        sendJSON($error, 404);
+    }
+
+    if (isset($_GET["director"])) {
+        $director = $_GET["director"];
+        $filteredMovies = [];
+        
+        foreach ($movies as $movie) {
+            if ($movie["director"] == $director) { 
+                $filteredMovies[] = $movie; 
+            }
+        }
+        
+        if(!empty($filteredMovies)) {
+            sendJSON($filteredMovies);
+        }
+
+        $error = ["ERROR" => "Movie not found"];
+        sendJSON($error, 404);
+    }
+
     if (isset($_GET["language"])) {
         $language = $_GET["language"];
         $filteredMovies = [];
@@ -54,13 +91,12 @@ if ($requestMethod == "GET") {
         sendJSON($error, 404);
     }
 
-    if (isset($_GET["releaseYear"])) {
-        $releaseYear = $_GET["releaseYear"];
+    if (isset($_GET["runtime"])) {
+        $runtime = $_GET["runtime"];
         $filteredMovies = [];
-        
+
         foreach ($movies as $movie) {
-            if ($movie["releaseYear"] <= $releaseYear) { 
-                //releaseYear och under
+            if ($movie["runtime"] <= $runtime) { 
                 $filteredMovies[] = $movie; 
             }
         }
