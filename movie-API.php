@@ -203,9 +203,18 @@ if ($requestMethod == "DELETE") {
 
 //PATCH METHOD
 if ($requestMethod == "PATCH") {
-    if (!isset($inputData["id"], $inputData["avgRating"])) {
-        $error = ["ERROR" => "Bad Request: ID or Key is missing"];
+    if (!isset($inputData["id"])) {
+        $error = ["ERROR" => "Bad Request: Movie ID is missing"];
         sendJSON($error, 400);
+    }
+
+    $unauthorisedKeys = ["title", "director", "releaseYear", "language", "runtime"];
+
+    foreach ($unauthorisedKeys as $key) {
+        if (isset($inputData["id"]) and isset($inputData["$key"])) {
+            $error = ["ERROR" => "Unathorised access: You are not allowed to edit one or more of these keys!"];
+            sendJSON($error, 401);
+        }
     }
 
     $id = $inputData["id"];
