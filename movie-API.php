@@ -204,7 +204,7 @@ if ($requestMethod == "DELETE") {
 //PATCH METHOD
 if ($requestMethod == "PATCH") {
     if (!isset($inputData["id"])) {
-        $error = ["ERROR" => "Bad Request: Movie ID is missing"];
+        $error = ["ERROR" => "Bad Request: Movie ID is missing."];
         sendJSON($error, 400);
     }
 
